@@ -1,0 +1,51 @@
+<p id="slogan"></p>
+<p id="before_register"></p>
+
+<script>
+    var language = (window.navigator.languages && window.navigator.languages[0]) ||
+        window.navigator.language ||
+        window.navigator.userLanguage ||
+        window.navigator.browserLanguage;
+
+    let about_instance_button_text = "About PCGamer Social";
+    let about_mastodon_button_text = "Learn more";
+    let slogan_text = "The Mastodon instance of the PC gamer, by the PC gamer, for the PC gamer.";
+    let before_register_html =
+        `Before registering please read <a href="/about/more">${about_instance_button_text}</a>.`;
+
+    switch (language) {
+        case "ja":
+        case "jp":
+        case "ja-JP":
+            {
+                about_instance_button_text = "PCGamer Socialとは";
+                about_mastodon_button_text = "もっと詳しく";
+                slogan_text = "The Mastodon instance of the PC gamer, by the PC gamer, for the PC gamer.";
+                before_register_html = `登録の前に、<a href="/about/more">${about_instance_button_text}</a>をご一読ください。`;
+                break;
+            }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const subtitle = document.querySelector(".landing-page__short-description div h1 small");
+        const domain = subtitle.querySelector("span");
+        const slogan = document.getElementById("slogan");
+        const before_register = document.getElementById("before_register");
+        const about_instance_button = document.querySelector('.button[href="/about/more"]');
+        const mastodon_features = document.querySelectorAll(".features-list")[1];
+        const mastodon_features_action = document.querySelector(".landing-page__features__action");
+        const mastodon_description = document.querySelector(".features-list div");
+
+        domain.innerText = "PCGamer.social";
+        document.title = "PCGamer Social";
+        mastodon_features.style = "display: none;";
+        mastodon_features_action.style = "display: none;";
+
+        before_register.innerHTML = before_register_html;
+        slogan.innerText = slogan_text;
+        about_instance_button.innerText = about_instance_button_text;
+        mastodon_description.insertAdjacentHTML("beforeend",
+            `<a class="button button-alternative" href="https://joinmastodon.org/" target="_blank">${about_mastodon_button_text}</a>`
+        );
+    });
+</script>
