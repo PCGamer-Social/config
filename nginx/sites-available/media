@@ -1,8 +1,8 @@
 proxy_cache_path /tmp/nginx_mstdn_media levels=1:2 keys_zone=mastodon_media:100m max_size=1g inactive=24h;
 
 server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
+    listen 80;
+    listen [::]:80;
     server_name media.pcgamer.social;
 
     return 301 https://media.pcgamer.social$request_uri;
