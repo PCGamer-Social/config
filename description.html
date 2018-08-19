@@ -27,25 +27,55 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-        const subtitle = document.querySelector(".landing-page__short-description div h1 small");
-        const domain = subtitle.querySelector("span");
-        const slogan = document.getElementById("slogan");
-        const before_register = document.getElementById("before_register");
-        const about_instance_button = document.querySelector('.button[href="/about/more"]');
-        const mastodon_features = document.querySelectorAll(".features-list")[1];
-        const mastodon_features_action = document.querySelector(".landing-page__features__action");
-        const mastodon_description = document.querySelector(".features-list div");
-
-        domain.innerText = "PCGamer.social";
-        document.title = "PCGamer Social";
-        mastodon_features.style = "display: none;";
-        mastodon_features_action.style = "display: none;";
-
-        before_register.innerHTML = before_register_html;
-        slogan.innerText = slogan_text;
-        about_instance_button.innerText = about_instance_button_text;
-        mastodon_description.insertAdjacentHTML("beforeend",
-            `<a class="button button-alternative" href="https://joinmastodon.org/" target="_blank">${about_mastodon_button_text}</a>`
-        );
+        {
+            const subtitle = document.querySelector(".landing-page__short-description div h1 small");
+            const domain = subtitle.querySelector("span");
+            domain.innerText = "PCGamer.social";
+            document.title = "PCGamer Social";
+        } {
+            const mastodon_features = document.querySelectorAll(".features-list")[1];
+            const mastodon_features_action = document.querySelector(".landing-page__features__action");
+            mastodon_features.style = "display: none;";
+            mastodon_features_action.style = "display: none;";
+        } {
+            const before_register = document.getElementById("before_register");
+            const slogan = document.getElementById("slogan");
+            const about_instance_button = document.querySelector('.button[href="/about/more"]');
+            before_register.innerHTML = before_register_html;
+            slogan.innerText = slogan_text;
+            about_instance_button.innerText = about_instance_button_text;
+        } {
+            const mastodon_description = document.querySelector(".features-list div");
+            mastodon_description.insertAdjacentHTML("beforeend",
+                `<a class="button button-alternative" href="https://joinmastodon.org/" target="_blank">${about_mastodon_button_text}</a>`
+            );
+        } {
+            const contact = document.querySelector(".contact");
+            contact.insertAdjacentHTML("beforeend",
+                `<h3 style="margin-top:30px;">管理Bot:</h3>
+                <div class="account">
+                    <div class="account__wrapper">
+                        <a class="account__display-name" href="https://PCGamer.social/@GLaDOS">
+                            <div class="account__avatar-wrapper">
+                                <div class="account__avatar" style="background-image: url(https://media.pcgamer.social/pcgamer-social/accounts/avatars/000/000/045/original/f14e5c9a4aa22e42.png)"></div>
+                            </div>
+                            <span class="display-name">
+                                <bdi><strong class="display-name__html emojify">GLaDOS</strong></bdi>
+                                <span class="display-name__account">@GLaDOS</span>
+                            </span>
+                        </a>
+                        <a class="account__display-name" href="https://PCGamer.social/@PotatOS">
+                            <div class="account__avatar-wrapper">
+                                <div class="account__avatar" style="background-image: url(https://media.pcgamer.social/pcgamer-social/accounts/avatars/000/000/056/original/a47d04120034942b.png)"></div>
+                            </div>
+                            <span class="display-name">
+                                <bdi><strong class="display-name__html emojify">PotatOS</strong></bdi>
+                                <span class="display-name__account">@PotatOS</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>`
+            );
+        }
     });
 </script>
