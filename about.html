@@ -1,4 +1,5 @@
-<iframe src="https://eai04191.github.io/Mastodon-Activity-Embed/embed.html?domain=pcgamer.social&showDomain=1" frameborder="0" scrolling="no"></iframe>
+<iframe src="https://eai04191.github.io/Mastodon-Activity-Embed/embed.html?domain=pcgamer.social&showDomain=0" frameborder="0"
+    scrolling="no"></iframe>
 </div>
 </div>
 </div>
@@ -18,6 +19,55 @@
         grid-column: 1/3;
         grid-row: 4;
     }
+
+    .qa *::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 2em;
+        filter: opacity(0.3);
+        font-weight: 700;
+    }
+
+    .qa .question::before {
+        content: "Q";
+    }
+
+    .qa .answer::before {
+        content: "A";
+    }
+
+    .qa .question>*,
+    .qa .answer>* {
+        margin-left: 2.5em;
+    }
+
+    .qa .question p,
+    .qa .answer p {
+        margin-bottom: 5px;
+    }
+
+    .qa .question h3,
+    .qa .answer h3 {
+        margin-top: 20px;
+    }
+
+    .qa .question ul,
+    .qa .answer ul {
+        margin-bottom: 20px;
+    }
+
+    .qa .question,
+    .qa .answer {
+        position: relative;
+        margin-bottom: 12px;
+    }
+
+    .qa hr {
+        height: 1px;
+        border: 0;
+        margin: 10px 0;
+    }
 </style>
 
 <div class="column-4">
@@ -32,23 +82,46 @@
 
             <h2>追加予定の独自機能・設定</h2>
 
+            <h3>投稿</h3>
             <ul>
-                <li>4K解像度のスクリーンショットをリサイズ無しで共有</li>
+                <li>
+                    4K解像度のスクリーンショットをリサイズ無しで共有
+                </li>
             </ul>
 
-            <!-- <hr class="spacer">
+            <h3>Bot</h3>
+            <ul>
+                <li>
+                    Steamゲームアイコン絵文字リクエストで自動追加機能
+                </li>
+            </ul>
 
-        <h2>追加済みの独自機能・設定</h2>
+            <hr class="spacer">
 
-        <ul>
-        <li></li>
-        </ul> -->
+            <h2>追加済みの独自機能・設定</h2>
+
+            <h3>プロフィール</h3>
+            <ul>
+                <li>表示名の最大文字数が30から
+                    <em>50</em> に
+                </li>
+                <li>ユーザー名の最大文字数が30から
+                    <em>50</em> に
+                </li>
+                <li>プロフィールの最大文字数が160から
+                    <em>500</em> に
+                </li>
+                <li>
+                    プロフィールのヘッダー画像のアスペクト比が自由
+                </li>
+            </ul>
 
             <hr class="spacer">
 
             <h2>カスタム絵文字の追加について</h2>
 
             <p>PCゲームに関連するソフトウェア・メーカー・プラットフォーム・ゲーム・その他のアイコンをカスタム絵文字として追加しています。</p>
+            <p>現在1,000個追加を目標にしています。</p>
             <p>追加してほしい絵文字があれば
                 <a href="https://pcgamer.social/@Eai">@Eai</a>までご連絡ください。
             </p>
@@ -62,9 +135,184 @@
 
             <h2>Mastodonのアップデートについて</h2>
 
-            タグ付きリリースを出来るだけ早くマージします。master追従はしません。
+            <p>タグ付きリリースを出来るだけ早くマージします。基本的にmaster追従はしませんが、面白い更新の場合はするかもしれません。</p>
 
             <hr class="spacer">
+
+            <h2>よくありそうな質問</h2>
+
+            <p>ないかもしれない。</p>
+
+            <div class="qa">
+                <div class="question">
+                    <p>
+                        PCゲームのこと以外を話してもいいですか？
+                    </p>
+                </div>
+                <div class="answer">
+                    <p>
+                        なにを話しても自由です！
+                    </p>
+                    <p>
+                        ただし、このインスタンスには少なからずPCゲームに興味があるユーザーがいるはずなので関連する話題のほうが楽しいかもしれません。
+                    </p>
+                </div>
+                <div class="question">
+                    <p>
+                        最初にフォローしているアカウントはなんですか？
+                    </p>
+                </div>
+                <div class="answer">
+                    <p>
+                        <a href="https://pcgamer.social/@PotatOS">@PotatOS</a>はこのインスタンスの更新情報に関する
+                        <a href="https://pcgamer.social/@Eai">@Eai</a>のトゥートをBT（ブースト）するアカウントです。
+                    </p>
+                    <p>
+                        フォローを外しても問題ありませんが、フォローしておいたほうがメンテナンスの時間や更新されたことがわかって便利だと思います。
+                    </p>
+                </div>
+                <hr>
+                <div class="question">
+                    <p>
+                        えっちなゲームしかやらないけど入ってもいいですか？
+                    </p>
+                </div>
+                <div class="answer">
+                    <p>
+                        えっちなゲームはeSportsなのでOKです。
+                    </p>
+                    <p>
+                        えっちな（露出の激しい・R-15/R-18）絵や性的な文を投稿する際にはCW（コンテンツワーニング）や閲覧注意タグをつけるのを忘れないでください。最悪サイレンス対象になります。
+                    </p>
+                </div>
+                <hr>
+                <div class="question">
+                    <p>
+                        人来るんですか？人いるんですか？
+                    </p>
+                </div>
+                <div class="answer">
+                    <p>
+                        きてね。
+                    </p>
+                </div>
+                <hr>
+                <div class="question">
+                    <p>
+                        禁止していることはありますか？
+                    </p>
+                </div>
+                <div class="answer">
+                    <h3>Do! やってほしいこと</h3>
+                    <ul>
+                        <li>
+                            ユーザー間で楽しくコミュニケーション
+                        </li>
+                    </ul>
+
+                    <h3>Don't! やってはいけないこと</h3>
+                    <ul>
+                        <li>
+                            短時間に大量のフォロー・お気に入り・ブースト・返信
+                            <br>サーバーに負荷がかかるのでご遠慮ください
+                        </li>
+                        <li>
+                            日本法に反する行為や唆す内容の投稿
+                            <br>警察や裁判所の要請があった場合はログを開示します。
+
+                        </li>
+                        <li>
+                            他人へARENAへのCALLを強要
+                        </li>
+                    </ul>
+                    <p>大事なことは
+                        <span style="font-size: 3em;">🤝みんななかよく👏</span>
+                    </p>
+                </div>
+                <hr>
+                <div class="question">
+                    <p>
+                        迷惑行為に対する対処は？
+                    </p>
+                </div>
+                <div class="answer">
+                    <p>
+                        アカウントの通報からご連絡ください。
+                    </p>
+                </div>
+                <hr>
+                <div class="question">
+                    <p>
+                        Botアカウントを作ってもいいですか？
+                    </p>
+                </div>
+                <div class="answer">
+                    <p>
+                        OKです。ただし、下記のBotアカウントルールに従ってください。
+                    </p>
+                    <h3>Botアカウントルール</h3>
+                    <ul>
+                        <li>
+                            プロフィールへBotバッジをつけること
+                        </li>
+                        <li>
+                            Public（公開）トゥートをしないこと
+                            <br> Botのトゥートでローカルタイムラインが埋まってしまいます。Unlisted（未収載）やPrivate（フォロワー限定）、Direct（ダイレクト）を使用してください。
+                        </li>
+                        <li>
+                            フォロワー以外へ能動的にフォロー・お気に入り・ブースト・返信をしないこと
+                            <br> Botへの返信に対してのアクションに対しての反応ならOKです。
+                        </li>
+                    </ul>
+                    <p>あなたのBotをお待ちしています。</p>
+                </div>
+                <hr>
+                <div class="question">
+                    <p>
+                        ソースコードは公開されていますか？
+                    </p>
+                </div>
+                <div class="answer">
+                    <p>
+                        <a href="https://github.com/PCGamer-Social">GitHubのPCGamer Social Organization</a>上ですべて公開しています。
+                    </p>
+                </div>
+                <hr>
+                <div class="question">
+                    <p>
+                        （このインスタンスから / このインスタンスへ） リモートフォローしてもいいですか？
+                    </p>
+                </div>
+                <div class="answer">
+                    <p>
+                        もちろん、OKです。
+                    </p>
+                </div>
+                <hr>
+                <div class="question">
+                    <p>
+                        Is allowed to Join who can't speak Japanese?
+                    </p>
+                </div>
+                <div class="answer">
+                    <p>
+                        Of course! Enjoy interaction!
+                    </p>
+                </div>
+                <!-- <hr>
+                <div class="question">
+                    <p>
+                    </p>
+                </div>
+                <div class="answer">
+                    <p>
+                    </p>
+                </div> -->
+            </div>
+
+            <p>その他何でも質問は
+                <a href="https://pcgamer.social/@Eai">@Eai</a>までお気軽に。
+            </p>
 
             <h2>サーバースペック</h2>
 
@@ -108,7 +356,8 @@
             <h3>オブジェクトストレージ</h3>
 
             <p>投稿された画像や動画などのメディアは
-                <a href="https://wasabi.com/">wasabi</a>でホストしています。</p>
+                <a href="https://wasabi.com/">Wasabi</a>でホストしています。
+            </p>
 
             <hr class="spacer">
 
@@ -120,7 +369,8 @@
 
             <ul>
                 <li>
-                    <a href="https://amzn.to/2nHOsDT" target="_blank">Amazonギフト券</a> - eai@mizle.net まで</li>
+                    <a href="https://amzn.to/2nHOsDT" target="_blank">Amazonギフト券</a> - eai@mizle.net まで
+                </li>
                 <li>
                     <a href="https://store.steampowered.com/wishlist/id/eai04191/" target="_blank">Steamウィッシュリスト</a>
                 </li>
