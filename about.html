@@ -15,9 +15,8 @@
         height: 164px;
     }
 
-    .column-4 {
+    .column-fullwidth {
         grid-column: 1/3;
-        grid-row: 4;
     }
 
     .qa *::before {
@@ -71,7 +70,123 @@
     }
 </style>
 
-<div class="column-4">
+<div class="column-fullwidth">
+    <div class="box-widget">
+        <div class="rich-formatting" style="line-height: 30px;" id="emoji-showcase">
+            <style>
+                #emoji-showcase .container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                #emoji-showcase .container .emoji {
+                    width: 5rem;
+                    height: 5rem;
+                    margin-right: 1em;
+                }
+
+                #emoji-showcase .container .info {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                #emoji-showcase .container .info p {
+                    margin: 0;
+                }
+
+                #emoji-showcase .container .info .name {
+                    font-size: 1.8em;
+                    font-weight: 500;
+                }
+
+                #emoji-showcase .container .info .counter .num {
+                    font-size: 1.5em;
+                }
+
+                #emoji-showcase .container .info .counter .separator {
+                    margin: 0 0.5em;
+                }
+
+                #emoji-showcase .container .info .counter .max {
+                    font-size: 1em;
+                }
+
+                #emoji-showcase.dark .container .info .name {
+                    color: #d9e1e8;
+                }
+
+                #emoji-showcase.light .container .info .name {
+                    color: #282c37;
+                }
+            </style>
+            <h1>ランダム絵文字ショーケース</h1>
+            <div class="container">
+                <img src="https://media.pcgamer.social/pcgamer-social/custom_emojis/images/000/000/139/original/blank-min.png" class="emoji">
+                <div class="info">
+                    <p><span class="name"></span></p>
+                    <p class="counter">
+                        <span class="num"></span>
+                        <span class="separator">/</span>
+                        <span class="max"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <script>
+            themeDetect();
+            // const domain = decodeURIComponent(window.location.search.match(/domain=(.*?)(&|$)/)[1]);
+            var domain = window.location.host;
+            fetch(`https://${domain}/api/v1/custom_emojis`, {
+                method: "GET"
+            }).then(function (response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error();
+                }
+            }).then(function (obj) {
+                const random = getRandomEmoji(obj);
+                setEmoji(random.emoji, random.index, random.emojisCount)
+            }).catch(function (error) {
+                console.log(error);
+            });
+
+            function themeDetect() {
+                const islight = document.querySelectorAll(`link[rel="stylesheet"]`)[1].href.match(/light/);
+                const elem = document.getElementById("emoji-showcase");
+                if (islight) {
+                    elem.className += " light";
+                } else {
+                    elem.className += " dark";
+                }
+            }
+
+            function getRandomEmoji(obj) {
+                const emojisCount = Object.keys(obj).length;
+                console.log(emojisCount);
+                const index = Math.floor(Math.random() * emojisCount);
+                const emoji = obj[index];
+                console.log(emoji);
+                return { emoji, index, emojisCount };
+            }
+
+            function setEmoji(obj, num, max) {
+                const img_elem = document.querySelector("#emoji-showcase .container img");
+                const name_elem = document.querySelector("#emoji-showcase .container .name");
+                const num_elem = document.querySelector("#emoji-showcase .container .counter .num");
+                const max_elem = document.querySelector(" #emoji-showcase .container .counter .max");
+                img_elem.src = obj.url;
+                name_elem.innerText = `:${obj.shortcode}:`;
+                num_elem.innerText = num + 1;
+                max_elem.innerText = max;
+            }
+        </script>
+    </div>
+</div>
+
+
+<div class="column-fullwidth">
     <div class="box-widget">
         <div class="rich-formatting" style="line-height: 30px;">
 
