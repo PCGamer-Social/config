@@ -1,20 +1,26 @@
+<!--
+Copyright (c) 2018 Eai
+Released under the MIT license.
+-->
 <div id="activity-embed">
 </div>
 <script>
-    // Config Begin.
-    const domain = "pcgamer.social";
-    const showDomain = false;
-    // Config End.
-    const activityEmbed = document.getElementById("activity-embed");
-    const islight = document.querySelectorAll(`link[rel="stylesheet"]`)[1].href.match(/light/);
-    let theme;
-    if (islight) {
-        theme = "light";
-    } else {
-        theme = "dark";
+    {
+        // Config Begin.
+        const domain = "pcgamer.social";
+        const showDomain = false;
+        // Config End.
+        const activityEmbed = document.getElementById("activity-embed");
+        const isLight = document.querySelectorAll(`link[rel="stylesheet"]`)[1].href.match(/light/);
+        let theme;
+        if (isLight) {
+            theme = "light";
+        } else {
+            theme = "dark";
+        }
+        const html = `<iframe src="https://eai04191.github.io/Mastodon-Activity-Embed/embed.html?domain=${domain}&showDomain=${Number(showDomain)}&theme=${theme}" frameborder="0" scrolling="no"></iframe>`;
+        activityEmbed.innerHTML = html;
     }
-    const html = `<iframe src="https://eai04191.github.io/Mastodon-Activity-Embed/embed.html?domain=${domain}&showDomain=${Number(showDomain)}&theme=${theme}" frameborder="0" scrolling="no"></iframe>`;
-    activityEmbed.innerHTML = html;
 </script>
 </div>
 </div>
@@ -26,7 +32,7 @@
         padding-right: 0;
     }
 
-    iframe {
+    #activity-embed iframe {
         width: 100%;
         height: 164px;
     }
@@ -34,7 +40,8 @@
     .column-fullwidth {
         grid-column: 1/3;
     }
-
+</style>
+<style>
     .qa *::before {
         position: absolute;
         top: 0;
@@ -138,21 +145,12 @@
                     color: #282c37;
                 }
 
-                .fadeIn {
+                #emoji-showcase .fadeIn {
                     animation: fadeIn .5s ease 0s 1 normal;
                     -webkit-animation: fadeIn .5s ease 0s 1 normal;
                 }
 
                 @keyframes fadeIn {
-                    0% {
-                        opacity: 0
-                    }
-                    100% {
-                        opacity: 1
-                    }
-                }
-
-                @-webkit-keyframes fadeIn {
                     0% {
                         opacity: 0
                     }
@@ -175,69 +173,70 @@
             </div>
         </div>
         <script>
-            themeDetect();
-            // const domain = decodeURIComponent(window.location.search.match(/domain=(.*?)(&|$)/)[1]);
-            var domain = window.location.host;
-            fetch(`https://${domain}/api/v1/custom_emojis`, {
-                method: "GET"
-            }).then(function (response) {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error();
+            {
+                themeDetect();
+                var domain = window.location.host;
+                fetch(`https://${domain}/api/v1/custom_emojis`, {
+                    method: "GET"
+                }).then(function (response) {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error();
+                    }
+                }).then(function (obj) {
+                    loop(obj);
+                }).catch(function (error) {
+                    console.log(error);
+                });
+
+                function themeDetect() {
+                    const isLight = document.querySelectorAll(`link[rel="stylesheet"]`)[1].href.match(/light/);
+                    const elem = document.getElementById("emoji-showcase");
+                    if (isLight) {
+                        elem.classList.add("light");
+                    } else {
+                        elem.classList.add("dark");
+                    }
                 }
-            }).then(function (obj) {
-                loop(obj);
-            }).catch(function (error) {
-                console.log(error);
-            });
 
-            function themeDetect() {
-                const islight = document.querySelectorAll(`link[rel="stylesheet"]`)[1].href.match(/light/);
-                const elem = document.getElementById("emoji-showcase");
-                if (islight) {
-                    elem.classList.add("light");
-                } else {
-                    elem.classList.add("dark");
+                function loop(obj) {
+                    const random = getRandomEmoji(obj);
+                    setEmoji(random.emoji, random.index, random.emojisCount);
+                    setTimeout(function () { loop(obj) }, 5000);
                 }
-            }
 
-            function loop(obj) {
-                const random = getRandomEmoji(obj);
-                setEmoji(random.emoji, random.index, random.emojisCount);
-                setTimeout(function () { loop(obj) }, 5000);
-            }
+                function getRandomEmoji(obj) {
+                    const emojisCount = Object.keys(obj).length;
+                    const index = Math.floor(Math.random() * emojisCount);
+                    const emoji = obj[index];
+                    console.log(emoji);
+                    return { emoji, index, emojisCount };
+                }
 
-            function getRandomEmoji(obj) {
-                const emojisCount = Object.keys(obj).length;
-                const index = Math.floor(Math.random() * emojisCount);
-                const emoji = obj[index];
-                console.log(emoji);
-                return { emoji, index, emojisCount };
-            }
+                function setEmoji(obj, num, max) {
+                    const container_elem = document.querySelector("#emoji-showcase .container");
+                    const img_elem = document.querySelector("#emoji-showcase .container img");
+                    const name_elem = document.querySelector("#emoji-showcase .container .name");
+                    const num_elem = document.querySelector("#emoji-showcase .container .counter .num");
+                    const max_elem = document.querySelector(" #emoji-showcase .container .counter .max");
+                    img_elem.src = obj.url;
+                    name_elem.innerText = `:${obj.shortcode}:`;
+                    num_elem.innerText = (num + 1).toLocaleString();
+                    max_elem.innerText = max.toLocaleString();
+                    addFade(container_elem);
+                }
 
-            function setEmoji(obj, num, max) {
-                const container_elem = document.querySelector("#emoji-showcase .container");
-                const img_elem = document.querySelector("#emoji-showcase .container img");
-                const name_elem = document.querySelector("#emoji-showcase .container .name");
-                const num_elem = document.querySelector("#emoji-showcase .container .counter .num");
-                const max_elem = document.querySelector(" #emoji-showcase .container .counter .max");
-                img_elem.src = obj.url;
-                name_elem.innerText = `:${obj.shortcode}:`;
-                num_elem.innerText = num + 1;
-                max_elem.innerText = max;
-                addFade(container_elem);
-            }
-
-            function addFade(elem) {
-                // fadeInを追加する
-                elem.classList.add("fadeIn");
-                // クローンをつくる
-                const clone = elem.cloneNode(true);
-                // オリジナルの真下に入れる
-                elem.insertAdjacentElement("afterend", clone);
-                // 初めのfadeInを削除する
-                document.querySelectorAll(".fadeIn")[0].remove();
+                function addFade(elem) {
+                    // .fadeInを追加する
+                    elem.classList.add("fadeIn");
+                    // クローンをつくる
+                    const clone = elem.cloneNode(true);
+                    // オリジナルの真下に入れる
+                    elem.insertAdjacentElement("afterend", clone);
+                    // 初めのfadeInを削除する
+                    document.querySelectorAll(".fadeIn")[0].remove();
+                }
             }
         </script>
     </div>
