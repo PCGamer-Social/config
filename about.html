@@ -2,6 +2,9 @@
 Copyright (c) 2018 Eai
 Released under the MIT license.
 -->
+<script>
+    document.title = "About more - PCGamer Social";
+</script>
 <div id="activity-embed">
 </div>
 <script>
@@ -97,44 +100,86 @@ Released under the MIT license.
     <div class="box-widget">
         <div class="rich-formatting" style="line-height: 30px;" id="emoji-showcase">
             <style>
-                #emoji-showcase .container {
+                #emoji-showcase a {
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+
+                #emoji-showcase .invisible {
+                    display: none;
+                }
+
+                #emoji-showcase .emoji-container {
                     display: flex;
                     justify-content: center;
                     align-items: center;
                 }
 
-                #emoji-showcase .container .emoji {
+                #emoji-showcase .emoji-container .emoji {
                     width: 5rem;
                     height: 5rem;
                     margin-right: 1em;
                     flex-shrink: 0;
                 }
 
-                #emoji-showcase .container .info {
+                #emoji-showcase .emoji-container .info {
                     display: flex;
                     flex-direction: column;
                 }
 
-                #emoji-showcase .container .info p {
+                #emoji-showcase .emoji-container .info p {
                     margin: 0;
                 }
 
-                #emoji-showcase .container .info .name {
+                #emoji-showcase .emoji-container .info .name {
                     font-size: 1.8em;
                     font-weight: 500;
                     word-break: break-all;
                 }
 
-                #emoji-showcase .container .info .counter .num {
+                #emoji-showcase .emoji-container .info .counter .emoji-index {
                     font-size: 1.5em;
                 }
 
-                #emoji-showcase .container .info .counter .separator {
+                #emoji-showcase .emoji-container .info .counter .separator {
                     margin: 0 0.5em;
                 }
 
-                #emoji-showcase .container .info .counter .max {
+                #emoji-showcase .emoji-container .info .counter .emojis-count {
                     font-size: 1em;
+                }
+
+                #emoji-showcase #all-emoji-container {
+                    display: grid;
+                    grid-template-columns: 50% 50%;
+                    margin-top: 3em;
+                }
+
+                #emoji-showcase #all-emoji-container .emoji-container {
+                    justify-content: start;
+                    margin-bottom: 1em;
+                }
+
+                #emoji-showcase #all-emoji-container .emoji-container .emoji {
+                    width: 3rem;
+                    height: 3rem;
+                    margin-right: 0.7em;
+                }
+
+                #emoji-showcase #all-emoji-container .emoji-container .info .name {
+                    font-size: 1.2em;
+                }
+
+                #emoji-showcase #all-emoji-container .emoji-container .info .counter .emoji-index {
+                    font-size: 1em;
+                }
+
+                #emoji-showcase #all-emoji-container .emoji-container .info .counter .separator {
+                    margin: 0 0.25em;
+                }
+
+                #emoji-showcase #all-emoji-container .emoji-container .info .counter .emojis-count {
+                    font-size: 0.7em;
                 }
 
                 #emoji-showcase.dark .container .info .name {
@@ -146,49 +191,43 @@ Released under the MIT license.
                 }
 
                 #emoji-showcase .fadeIn {
-                    animation: fadeIn .5s ease 0s 1 normal;
-                    -webkit-animation: fadeIn .5s ease 0s 1 normal;
+                    animation: fadeIn 0.5s ease 0s 1 normal;
+                    -webkit-animation: fadeIn 0.5s ease 0s 1 normal;
                 }
 
                 @keyframes fadeIn {
                     0% {
-                        opacity: 0
+                        opacity: 0;
                     }
                     100% {
-                        opacity: 1
+                        opacity: 1;
                     }
                 }
             </style>
             <h1>ランダム絵文字ショーケース</h1>
-            <div class="container">
+            <div class="emoji-container">
                 <img src="https://media.pcgamer.social/pcgamer-social/custom_emojis/images/000/000/139/original/blank-min.png" class="emoji">
                 <div class="info">
                     <p><span class="name"></span></p>
                     <p class="counter">
-                        <span class="num"></span>
+                        <span class="emoji-index"></span>
                         <span class="separator">/</span>
-                        <span class="max"></span>
+                        <span class="emojis-count"></span>
                     </p>
                 </div>
             </div>
+            <p style="text-align: right;">
+                <a id="see-all-emojis">全ての絵文字を見る...</a>
+                <a id="close-all-emojis" class="invisible">全ての絵文字を閉じる</a>
+            </p>
         </div>
         <script>
             {
                 themeDetect();
                 var domain = window.location.host;
-                fetch(`https://${domain}/api/v1/custom_emojis`, {
-                    method: "GET"
-                }).then(function (response) {
-                    if (response.ok) {
-                        return response.json();
-                    } else {
-                        throw new Error();
-                    }
-                }).then(function (obj) {
-                    loop(obj);
-                }).catch(function (error) {
-                    console.log(error);
-                });
+                getEmojiList()
+                    .then(data => loop(data))
+                    .catch(error => console.error(error));
 
                 function themeDetect() {
                     const isLight = document.querySelectorAll(`link[rel="stylesheet"]`)[1].href.match(/light/);
@@ -198,6 +237,14 @@ Released under the MIT license.
                     } else {
                         elem.classList.add("dark");
                     }
+                }
+
+                function getEmojiList() {
+                    return fetch(`https://${domain}/api/v1/custom_emojis`, {
+                        method: "GET"
+                    })
+                        .then(response => response.json())
+                        .catch(error => console.error(error));
                 }
 
                 function loop(obj) {
@@ -210,16 +257,16 @@ Released under the MIT license.
                     const emojisCount = Object.keys(obj).length;
                     const index = Math.floor(Math.random() * emojisCount);
                     const emoji = obj[index];
-                    console.log(emoji);
+                    // console.log(emoji);
                     return { emoji, index, emojisCount };
                 }
 
                 function setEmoji(obj, num, max) {
-                    const container_elem = document.querySelector("#emoji-showcase .container");
-                    const img_elem = document.querySelector("#emoji-showcase .container img");
-                    const name_elem = document.querySelector("#emoji-showcase .container .name");
-                    const num_elem = document.querySelector("#emoji-showcase .container .counter .num");
-                    const max_elem = document.querySelector(" #emoji-showcase .container .counter .max");
+                    const container_elem = document.querySelector("#emoji-showcase > .emoji-container");
+                    const img_elem = document.querySelector("#emoji-showcase > .emoji-container img");
+                    const name_elem = document.querySelector("#emoji-showcase > .emoji-container .name");
+                    const num_elem = document.querySelector("#emoji-showcase > .emoji-container .counter .emoji-index");
+                    const max_elem = document.querySelector(" #emoji-showcase > .emoji-container .counter .emojis-count");
                     img_elem.src = obj.url;
                     name_elem.innerText = `:${obj.shortcode}:`;
                     num_elem.innerText = (num + 1).toLocaleString();
@@ -237,6 +284,46 @@ Released under the MIT license.
                     // 初めのfadeInを削除する
                     document.querySelectorAll(".fadeIn")[0].remove();
                 }
+
+                document.getElementById("see-all-emojis").addEventListener("click", function (event) {
+                    function addEmoji(emoji, emojiIndex, emojisCount) {
+                        let emojiContainer = document.getElementById("all-emoji-container");
+                        if (!emojiContainer) {
+                            const container = document.querySelector("#emoji-showcase > .emoji-container");
+                            let emojiContainer = document.createElement('div');
+                            container.insertAdjacentHTML("afterend", `<div id="all-emoji-container" class="fadeIn"></div>`);
+                        }
+                        emojiContainer = document.getElementById("all-emoji-container");
+                        emojiContainer.insertAdjacentHTML("beforeend",
+                            `<div class="emoji-container">
+                            <img src="${emoji.url}" class="emoji">
+                            <div class="info">
+                                <p><span class="name">:${emoji.shortcode}:</span></p>
+                                <p class="counter">
+                                    <span class="emoji-index">${(Number(emojiIndex) + 1).toLocaleString()}</span >
+                                    <span class="separator">/</span>
+                                    <span class="emojis-count">${emojisCount.toLocaleString()}</span>
+                                </p >
+                            </div >
+                        </div >`);
+                    }
+                    getEmojiList()
+                        .then(function (emojis) {
+                            const emojisCount = Object.keys(emojis).length;
+                            Object.keys(emojis).forEach(function (emojiIndex) {
+                                addEmoji(emojis[emojiIndex], emojiIndex, emojisCount);
+                            });
+                        })
+                        .catch(error => console.error(error));
+                    this.classList.add("invisible");
+                    document.getElementById("close-all-emojis").classList.remove("invisible");
+                }, false);
+
+                document.getElementById("close-all-emojis").addEventListener("click", function (event) {
+                    document.getElementById("all-emoji-container").remove();
+                    this.classList.add("invisible");
+                    document.getElementById("see-all-emojis").classList.remove("invisible");
+                }, false);
             }
         </script>
     </div>
