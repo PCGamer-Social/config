@@ -84,6 +84,7 @@
                     width: 5rem;
                     height: 5rem;
                     margin-right: 1em;
+                    flex-shrink: 0;
                 }
 
                 #emoji-showcase .container .info {
@@ -98,6 +99,7 @@
                 #emoji-showcase .container .info .name {
                     font-size: 1.8em;
                     font-weight: 500;
+                    word-break: break-all;
                 }
 
                 #emoji-showcase .container .info .counter .num {
@@ -118,6 +120,29 @@
 
                 #emoji-showcase.light .container .info .name {
                     color: #282c37;
+                }
+
+                .fadeIn {
+                    animation: fadeIn .5s ease 0s 1 normal;
+                    -webkit-animation: fadeIn .5s ease 0s 1 normal;
+                }
+
+                @keyframes fadeIn {
+                    0% {
+                        opacity: 0
+                    }
+                    100% {
+                        opacity: 1
+                    }
+                }
+
+                @-webkit-keyframes fadeIn {
+                    0% {
+                        opacity: 0
+                    }
+                    100% {
+                        opacity: 1
+                    }
                 }
             </style>
             <h1>ランダム絵文字ショーケース</h1>
@@ -146,8 +171,7 @@
                     throw new Error();
                 }
             }).then(function (obj) {
-                const random = getRandomEmoji(obj);
-                setEmoji(random.emoji, random.index, random.emojisCount)
+                loop(obj);
             }).catch(function (error) {
                 console.log(error);
             });
@@ -156,15 +180,20 @@
                 const islight = document.querySelectorAll(`link[rel="stylesheet"]`)[1].href.match(/light/);
                 const elem = document.getElementById("emoji-showcase");
                 if (islight) {
-                    elem.className += " light";
+                    elem.classList.add("light");
                 } else {
-                    elem.className += " dark";
+                    elem.classList.add("dark");
                 }
+            }
+
+            function loop(obj) {
+                const random = getRandomEmoji(obj);
+                setEmoji(random.emoji, random.index, random.emojisCount);
+                setTimeout(function () { loop(obj) }, 5000);
             }
 
             function getRandomEmoji(obj) {
                 const emojisCount = Object.keys(obj).length;
-                console.log(emojisCount);
                 const index = Math.floor(Math.random() * emojisCount);
                 const emoji = obj[index];
                 console.log(emoji);
@@ -172,6 +201,7 @@
             }
 
             function setEmoji(obj, num, max) {
+                const container_elem = document.querySelector("#emoji-showcase .container");
                 const img_elem = document.querySelector("#emoji-showcase .container img");
                 const name_elem = document.querySelector("#emoji-showcase .container .name");
                 const num_elem = document.querySelector("#emoji-showcase .container .counter .num");
@@ -180,6 +210,18 @@
                 name_elem.innerText = `:${obj.shortcode}:`;
                 num_elem.innerText = num + 1;
                 max_elem.innerText = max;
+                addFade(container_elem);
+            }
+
+            function addFade(elem) {
+                // fadeInを追加する
+                elem.classList.add("fadeIn");
+                // クローンをつくる
+                const clone = elem.cloneNode(true);
+                // オリジナルの真下に入れる
+                elem.insertAdjacentElement("afterend", clone);
+                // 初めのfadeInを削除する
+                document.querySelectorAll(".fadeIn")[0].remove();
             }
         </script>
     </div>
