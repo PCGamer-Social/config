@@ -32,6 +32,20 @@ server {
     ssl_certificate     /etc/letsencrypt/live/pcgamer.social/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/pcgamer.social/privkey.pem;
 
+    # mastodos.com
+    deny 133.242.229.169;
+    # switter.at
+    deny 159.100.254.21;
+    deny 159.100.245.244;
+    deny 159.100.245.83;
+    deny 159.100.255.118;
+    deny 159.100.245.104;
+    # qiitadon.com
+    deny 13.112.20.209;
+    deny 13.113.126.18;
+    # bcn-users.degica.com
+    deny 13.113.195.243;
+
     keepalive_timeout    70;
     sendfile             on;
     client_max_body_size 40m;
