@@ -15,6 +15,7 @@ server {
 
     # Let's Encrypt
     location /.well-known/acme-challenge/ { allow all; }
+
     location / { return 301 https://$host$request_uri; }
 }
 
@@ -66,6 +67,12 @@ server {
     error_log /var/log/nginx/mastodon-error.log;
 
     add_header Strict-Transport-Security "max-age=31536000";
+
+    location /stub_status {
+        stub_status;
+        allow 127.0.0.1;
+        deny all;
+    }
 
     location / {
         try_files $uri @proxy;

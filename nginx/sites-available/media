@@ -12,6 +12,7 @@ server {
 
     # Let's Encrypt
     location /.well-known/acme-challenge/ { allow all; }
+    
     location / { return 301 https://$host$request_uri; }
 }
 
