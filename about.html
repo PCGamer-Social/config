@@ -108,7 +108,7 @@ Released under the MIT license.
         flex-wrap: wrap;
     }
     #netdata-badges h3 {
-        width: 100px;
+        width: 125px;
         margin: 10px 0;
         line-height: 20px;
     }
@@ -367,7 +367,7 @@ Released under the MIT license.
 
             <hr class="spacer">
 
-            <h2>追加予定の独自機能・設定</h2>
+            <h2><i class="fa fa-fw fa-code" aria-hidden="true"></i>追加予定の独自機能・設定</h2>
 
             <h3>Bot</h3>
             <ul>
@@ -378,9 +378,9 @@ Released under the MIT license.
 
             <hr class="spacer">
 
-            <h2>追加済みの独自機能・設定</h2>
+            <h2><i class="fa fa-fw fa-plus-square-o" aria-hidden="true"></i>追加済みの独自機能・設定</h2>
 
-            <h3>プロフィール</h3>
+            <h3><i class="fa fa-fw fa-user" aria-hidden="true"></i>プロフィール</h3>
             <ul>
                 <li>表示名の最大文字数が30から
                     <em>50</em> に
@@ -396,7 +396,7 @@ Released under the MIT license.
                 </li>
             </ul>
 
-            <h3>投稿</h3>
+            <h3><i class="fa fa-fw fa-envelope-o" aria-hidden="true"></i>投稿</h3>
             <ul>
                 <li>
                     4K解像度のスクリーンショットをリサイズ無しで共有
@@ -405,7 +405,7 @@ Released under the MIT license.
 
             <hr class="spacer">
 
-            <h2>カスタム絵文字の追加について</h2>
+            <h2><i class="fa fa-fw fa-file-image-o" aria-hidden="true"></i>カスタム絵文字の追加について</h2>
 
             <p>PCゲームに関連するソフトウェア・メーカー・プラットフォーム・ゲーム・その他のアイコンをカスタム絵文字として追加しています。</p>
             <p>現在1,000個追加を目標にしています。</p>
@@ -420,13 +420,13 @@ Released under the MIT license.
 
             <hr class="spacer">
 
-            <h2>Mastodonのアップデートについて</h2>
+            <h2><i class="fa fa-fw fa-level-up" aria-hidden="true"></i>Mastodonのアップデートについて</h2>
 
             <p>タグ付きリリースを出来るだけ早くマージします。基本的にmaster追従はしませんが、面白い更新の場合はするかもしれません。</p>
 
             <hr class="spacer">
 
-            <h2>よくありそうな質問</h2>
+            <h2><i class="fa fa-fw fa-question-circle-o" aria-hidden="true"></i>よくありそうな質問</h2>
 
             <p>ないかもしれない。</p>
 
@@ -592,7 +592,7 @@ Released under the MIT license.
                 <a href="https://pcgamer.social/@Eai">pcgamer.social/@Eai</a>（もしくは<a href="https://twitter.com/eai04191">twitter.com/eai04191</a>）までお気軽に。
             </p>
 
-            <h2>サーバースペック</h2>
+            <h2><i class="fa fa-fw fa-tachometer" aria-hidden="true"></i>サーバースペック</h2>
 
             <div class="row landing-page__call-to-action" style="position: relative;">
                 <div class="row">
@@ -629,7 +629,7 @@ Released under the MIT license.
             </div>
             <div id="netdata-badges">
                 <div>
-                    <h3>CPU</h3>
+                    <h3><i class="fa fa-fw fa-microchip" aria-hidden="true"></i>CPU</h3>
                     <embed src="https://netdata.pcgamer.social/api/v1/badge.svg?chart=system.cpu&alarm=10min_cpu_usage&label=10min%20usage&refresh=auto"
                         type="image/svg+xml" lazyload="on" />
                     <embed src="https://netdata.pcgamer.social/api/v1/badge.svg?chart=system.cpu&alarm=10min_cpu_iowait&label=10min%20iowait&refresh=auto"
@@ -638,7 +638,7 @@ Released under the MIT license.
                         type="image/svg+xml" lazyload="on" />
                 </div>
                 <div>
-                    <h3>MEM</h3>
+                    <h3><i class="fa fa-fw fa-tasks" aria-hidden="true"></i>MEM</h3>
                     <embed src="https://netdata.pcgamer.social/api/v1/badge.svg?chart=system.ram&alarm=ram_in_use&label=in%20use&refresh=auto"
                         type="image/svg+xml" lazyload="on" />
                     <embed src="https://netdata.pcgamer.social/api/v1/badge.svg?chart=system.swapio&alarm=30min_ram_swapped_out&labe=30min%20swapped%20out&units=%25&refresh=auto"
@@ -649,7 +649,7 @@ Released under the MIT license.
                         type="image/svg+xml" lazyload="on" />
                 </div>
                 <div>
-                    <h3>nginx</h3>
+                    <h3><i class="fa fa-fw fa-exchange" aria-hidden="true"></i>nginx</h3>
                     <embed src="https://netdata.pcgamer.social/api/v1/badge.svg?chart=nginx_local.connections&value_color=blue&label=connections&refresh=auto"
                         type="image/svg+xml" lazyload="on" />
                     <embed src="https://netdata.pcgamer.social/api/v1/badge.svg?chart=nginx_local.requests&value_color=blue&label=requests&refresh=auto"
@@ -658,7 +658,7 @@ Released under the MIT license.
                         type="image/svg+xml" lazyload="on" />
                 </div>
                 <div>
-                    <h3>Others</h3>
+                    <h3><i class="fa fa-fw fa-cogs" aria-hidden="true"></i>Others</h3>
                     <embed src="https://netdata.pcgamer.social/api/v1/badge.svg?chart=system.uptime&value_color=blue&label=uptime&refresh=auto"
                         type="image/svg+xml" lazyload="on" />
                     <embed src="https://netdata.pcgamer.social/api/v1/badge.svg?chart=tc.world_out&dimensions=web_server&after=-86400&options=unaligned&group=sum&divide=8388608&value_color=blue&label=24h%20web%20server%20sent&units=GB&refresh=auto"
@@ -674,7 +674,7 @@ Released under the MIT license.
                 </div>
             </div>
 
-            <h3>オブジェクトストレージ</h3>
+            <h3><i class="fa fa-fw fa-cloud" aria-hidden="true"></i>オブジェクトストレージ</h3>
 
             <p>投稿された画像や動画などのメディアは
                 <a href="https://wasabi.com/">Wasabi</a>でホストしています。
@@ -682,7 +682,7 @@ Released under the MIT license.
 
             <hr class="spacer">
 
-            <h2>寄付</h2>
+            <h2><i class="fa fa-fw fa-coffee" aria-hidden="true"></i>寄付</h2>
 
             <!--<p>現在寄付は受け付けていません。</p>-->
             <p>PCGamer Socialを提供するために、サーバーやドメイン、CDN代に約3万円/年と保守管理に多大な時間をかけています。</p>
