@@ -543,7 +543,7 @@ Released under the MIT license.
                     <p>
                         OKです。ただし、下記のBotアカウントルールに従ってください。
                     </p>
-                    <h3><i class="fa fa-cube" aria-hidden="true"></i>Botアカウントルール</h3>
+                    <h3>Botアカウントルール</h3>
                     <ul>
                         <li>
                             プロフィールへBotバッジをつけること
@@ -576,9 +576,13 @@ Released under the MIT license.
                 <a href="https://pcgamer.social/@Eai">pcgamer.social/@Eai</a>（もしくは<a href="https://twitter.com/eai04191">twitter.com/eai04191</a>）までお気軽に。
             </p>
 
+
+
             <hr class="spacer">
 
-            <h2><i class="fa fa-fw fa-tachometer" aria-hidden="true"></i>サーバースペック</h2>
+
+
+            <h2><i class="fa fa-fw fa-tachometer" aria-hidden="true"></i>サーバー情報</h2>
 
             <div class="row landing-page__call-to-action" style="position: relative;">
                 <div class="row">
@@ -607,7 +611,13 @@ Released under the MIT license.
                     <div class="row__mascot">
                         <div class="landing-page__mascot" style="position: absolute; left: 1rem;">
                             <a href="https://www.linode.com/?r=67f2c1a402a83cc4f1bbb918423329f315627d2d" target="_blank">
-                                <img src="https://i.imgur.com/NsQLS0H.png" style="height: 100%;">
+                                <img id="linode-logo" src="https://i.imgur.com/NsQLS0H.png" style="height: 100%;">
+                                <script>
+                                    const isLight = document.querySelectorAll(`link[rel="stylesheet"]`)[1].href.match(/light/);
+                                    if (isLight) {
+                                        document.getElementById("linode-logo").src = "https://i.imgur.com/nrSrJgV.png";
+                                    }
+                                </script>
                             </a>
                         </div>
                     </div>
@@ -672,9 +682,9 @@ Released under the MIT license.
 
 
 
-            <h2><i class="fa fa-fw fa-level-up" aria-hidden="true"></i>Mastodonのアップデートについて</h2>
+            <h2><i class="fa fa-fw fa-level-up" aria-hidden="true"></i>Mastodonのアップデート</h2>
 
-            <p>タグ付きリリースを出来るだけ早くマージします。基本的にmaster追従はしませんが、面白い更新の場合はするかもしれません。</p>
+            <p>タグ付きリリースを出来るだけ早くマージします。基本的にmaster追従はしませんが、面白い昨日が追加されたらするかもしれません。</p>
 
 
 
@@ -690,14 +700,15 @@ Released under the MIT license.
 
             <ul>
                 <li>
-                    <a href="https://amzn.to/2nHOsDT" target="_blank">Amazonギフト券</a> - eai@mizle.net まで
+                    <a href="https://amzn.to/2nHOsDT" target="_blank">Amazonギフト券</a>
+                    - eai@mizle.net まで
                 </li>
                 <li>
                     Kyashで送金 - eai04191 まで
                 </li>
                 <li>
                     <a href="https://www.pixiv.net/fanbox/creator/4720095" target="_blank">pixivFANBOX</a>
-                    継続して支援してくださる珍しい方がいればコチラに……
+                    - 継続して支援してくださる方がいればこちらに……。
                 </li>
                 <!-- <li>
                     <a href="https://store.steampowered.com/wishlist/id/eai04191/" target="_blank">Steamウィッシュリスト</a>
