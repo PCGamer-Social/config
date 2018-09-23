@@ -95,6 +95,33 @@ Released under the MIT license.
         margin: 10px 0;
     }
 </style>
+<style>
+    #netdata-badges {
+        position: relative;
+        margin: 12px 0;
+    }
+    #netdata-badges a {
+        text-decoration: none;
+    }
+    #netdata-badges div {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    #netdata-badges h3 {
+        width: 100px;
+        margin: 10px 0;
+        line-height: 20px;
+    }
+    #netdata-badges embed {
+        height: 20px;
+        margin: 10px 2px;
+    }
+    #netdata-link {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+</style>
 
 <div class="column-fullwidth">
     <div class="box-widget">
@@ -559,15 +586,6 @@ Released under the MIT license.
                         Of course! Enjoy interaction!
                     </p>
                 </div>
-                <!-- <hr>
-                <div class="question">
-                    <p>
-                    </p>
-                </div>
-                <div class="answer">
-                    <p>
-                    </p>
-                </div> -->
             </div>
 
             <p>その他何でも質問は
@@ -609,9 +627,52 @@ Released under the MIT license.
                     </div>
                 </div>
             </div>
-            <p>
-                <a href="https://www.linode.com/?r=67f2c1a402a83cc4f1bbb918423329f315627d2d" target="_blank">Linode VPS</a>を利用しています。</a>
-            </p>
+            <div id="netdata-badges">
+                <div>
+                    <h3>CPU</h3>
+                    <embed src="https://netdata.pcgamer.social/api/v1/badge.svg?chart=system.cpu&alarm=10min_cpu_usage&label=10min%20usage&refresh=auto"
+                        type="image/svg+xml" lazyload="on" />
+                    <embed src="https://netdata.pcgamer.social/api/v1/badge.svg?chart=system.cpu&alarm=10min_cpu_iowait&label=10min%20iowait&refresh=auto"
+                        type="image/svg+xml" lazyload="on" />
+                    <embed src="https://netdata.pcgamer.social/api/v1/badge.svg?chart=system.load&alarm=load_average_5&refresh=auto"
+                        type="image/svg+xml" lazyload="on" />
+                </div>
+                <div>
+                    <h3>MEM</h3>
+                    <embed src="https://netdata.pcgamer.social/api/v1/badge.svg?chart=system.ram&alarm=ram_in_use&label=in%20use&refresh=auto"
+                        type="image/svg+xml" lazyload="on" />
+                    <embed src="https://netdata.pcgamer.social/api/v1/badge.svg?chart=system.swapio&alarm=30min_ram_swapped_out&labe=30min%20swapped%20out&units=%25&refresh=auto"
+                        type="image/svg+xml" lazyload="on" />
+                    <embed src="https://netdata.pcgamer.social/api/v1/badge.svg?chart=mem.available&value_color=blue&label=avilable&refresh=auto"
+                        type="image/svg+xml" lazyload="on" />
+                    <embed src="https://netdata.pcgamer.social/api/v1/badge.svg?chart=mem.committed&value_color=blue&label=comitted&refresh=auto"
+                        type="image/svg+xml" lazyload="on" />
+                </div>
+                <div>
+                    <h3>nginx</h3>
+                    <embed src="https://netdata.pcgamer.social/api/v1/badge.svg?chart=nginx_local.connections&value_color=blue&label=connections&refresh=auto"
+                        type="image/svg+xml" lazyload="on" />
+                    <embed src="https://netdata.pcgamer.social/api/v1/badge.svg?chart=nginx_local.requests&value_color=blue&label=requests&refresh=auto"
+                        type="image/svg+xml" lazyload="on" />
+                    <embed src="https://netdata.pcgamer.social/api/v1/badge.svg?chart=web_log_pcgs.response_statuses&dimensions=bad&value_color=blue&label=bad%20requests&refresh=auto"
+                        type="image/svg+xml" lazyload="on" />
+                </div>
+                <div>
+                    <h3>Others</h3>
+                    <embed src="https://netdata.pcgamer.social/api/v1/badge.svg?chart=system.uptime&value_color=blue&label=uptime&refresh=auto"
+                        type="image/svg+xml" lazyload="on" />
+                    <embed src="https://netdata.pcgamer.social/api/v1/badge.svg?chart=tc.world_out&dimensions=web_server&after=-86400&options=unaligned&group=sum&divide=8388608&value_color=blue&label=24h%20web%20server%20sent&units=GB&refresh=auto"
+                        type="image/svg+xml" lazyload="on" />
+                    <embed src="https://netdata.pcgamer.social/api/v1/badge.svg?chart=tc.world_in&dimensions=web_server&after=-86400&options=unaligned&group=sum&divide=8388608&value_color=blue&label=24h%20web%20server%20received&units=GB&refresh=auto"
+                        type="image/svg+xml" lazyload="on" />
+                </div>
+                <div id="netdata-link">
+                    <a href="https://netdata.pcgamer.social">
+                        <p>Powered by <span>netdata</span>.</p>
+                        <img src="https://netdata.pcgamer.social/images/netdata.svg">
+                    </a>
+                </div>
+            </div>
 
             <h3>オブジェクトストレージ</h3>
 
@@ -635,7 +696,8 @@ Released under the MIT license.
                     Kyashで送金 - eai04191 まで
                 </li>
                 <li>
-                    <a href="https://www.pixiv.net/fanbox/creator/4720095" target="_blank">pixivFANBOX</a> 継続して支援してくださる珍しい方がいればコチラに……
+                    <a href="https://www.pixiv.net/fanbox/creator/4720095" target="_blank">pixivFANBOX</a>
+                    継続して支援してくださる珍しい方がいればコチラに……
                 </li>
                 <!-- <li>
                     <a href="https://store.steampowered.com/wishlist/id/eai04191/" target="_blank">Steamウィッシュリスト</a>
