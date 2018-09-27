@@ -33,8 +33,6 @@ server {
     ssl_certificate     /etc/letsencrypt/live/pcgamer.social/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/pcgamer.social/privkey.pem;
 
-    # mastodos.com
-    deny 133.242.229.169;
     # switter.at
     deny 159.100.254.21;
     deny 159.100.245.244;
