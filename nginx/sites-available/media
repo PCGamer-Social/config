@@ -5,7 +5,7 @@ server {
     listen [::]:80;
     server_name media.pcgamer.social;
 
-    return 301 https://media.pcgamer.social$request_uri;
+    root /var/www/html;
 
     access_log /dev/null;
     error_log /dev/null;
