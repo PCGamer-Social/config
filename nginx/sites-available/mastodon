@@ -44,6 +44,8 @@ server {
     deny 13.113.126.18;
     # bcn-users.degica.com
     deny 13.113.195.243;
+    # mastodon.antifa.tokyo
+    deny 119.106.22.96;
 
     keepalive_timeout    70;
     sendfile             on;
