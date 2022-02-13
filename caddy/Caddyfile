@@ -1,0 +1,64 @@
+{
+    email eai@mizle.net
+}
+
+pcgamer.social {
+    @local {
+        file
+        not path /
+    }
+    @local_media {
+        path_regexp /system/(.*)
+    }
+    @streaming {
+        path /api/v1/streaming/*
+    }
+    @cache_control {
+        path_regexp ^/(emoji|packs|/system/accounts/avatars|/system/media_attachments/files)
+    }
+
+    root * /home/eai/mastodon/public
+    log {
+        output file /var/log/caddy/mastodon.log
+    }
+    encode zstd gzip
+
+    handle_errors {
+        rewrite 500.html
+        file_server
+    }
+
+    header {
+        Strict-Transport-Security "max-age=31536000"
+    }
+    header /sw.js Cache-Control "public, max-age=0"
+    header @cache_control Cache-Control "public, max-age=31536000, immutable"
+
+    handle @local {
+        file_server
+    }
+
+    # 古いメディアのパスのリダイレクト
+    redir @local_media  https://media.pcgamer.social/{http.regexp.1} permanent
+
+    reverse_proxy @streaming {
+        to http://localhost:4000
+
+        transport http {
+            keepalive 5s
+            keepalive_idle_conns 10
+        }
+    }
+
+    reverse_proxy  {
+        to http://localhost:3000
+
+        header_up X-Forwarded-Port 443
+        header_up X-Forwarded-Proto https
+
+        transport http {
+            keepalive 5s
+            keepalive_idle_conns 10
+        }
+    }
+}
